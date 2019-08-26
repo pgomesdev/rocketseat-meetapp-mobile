@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Dashboard from './pages/Dashboard';
+import Subscriptions from './pages/Subscriptions';
 
 // import { Container } from './styles';
 
 export default function App() {
-  return <Dashboard />;
+  return <Subscriptions />;
 }
