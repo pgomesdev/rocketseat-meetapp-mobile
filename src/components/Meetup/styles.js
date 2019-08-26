@@ -34,7 +34,7 @@ export const LocationText = styled.Text`
 export const Subscribe = styled(RectButton)`
   height: 40px;
   border-radius: 4px;
-  background: #f94d6a;
+  background: #d44059;
   padding: 10px 0;
 `;
 

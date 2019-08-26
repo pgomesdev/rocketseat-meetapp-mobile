@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Subscriptions from './pages/Subscriptions';
+import Profile from './pages/Profile';
 
 // import { Container } from './styles';
 
 export default function App() {
-  return <Subscriptions />;
+  return <Profile />;
 }
