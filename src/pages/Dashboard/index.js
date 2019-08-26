@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FlatList } from 'react-native';
 
-import Meetup from './Meetup';
+import Meetup from '../../components/Meetup';
 
 import Background from '../../components/Background';
 import { Container, DateContainer, DateText } from './styles';
@@ -48,7 +48,7 @@ const meetups = [
   },
 ];
 
-export default function Meetups() {
+export default function Dashboard() {
   return (
     <Background>
       <Container>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Meetups from './pages/Meetups';
+import Dashboard from './pages/Dashboard';
 
 // import { Container } from './styles';
 
 export default function App() {
-  return <Meetups />;
+  return <Dashboard />;
 }
