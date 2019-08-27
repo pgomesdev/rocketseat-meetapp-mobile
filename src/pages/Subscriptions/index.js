@@ -3,7 +3,6 @@ import { FlatList } from 'react-native';
 
 import Meetup from '../../components/Meetup';
 
-import Background from '../../components/Background';
 import { Container } from './styles';
 
 const meetups = [
@@ -55,14 +54,12 @@ const meetups = [
 
 export default function Subscriptions() {
   return (
-    <Background>
-      <Container>
-        <FlatList
-          keyExtractor={meetup => String(meetup.id)}
-          data={meetups}
-          renderItem={({ item }) => <Meetup meetup={item.meetup} isCancel />}
-        />
-      </Container>
-    </Background>
+    <Container>
+      <FlatList
+        keyExtractor={meetup => String(meetup.id)}
+        data={meetups}
+        renderItem={({ item }) => <Meetup meetup={item.meetup} isCancel />}
+      />
+    </Container>
   );
 }

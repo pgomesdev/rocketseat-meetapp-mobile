@@ -4,7 +4,6 @@ import { FlatList } from 'react-native';
 
 import Meetup from '../../components/Meetup';
 
-import Background from '../../components/Background';
 import { Container, DateContainer, DateText } from './styles';
 
 const meetups = [
@@ -50,19 +49,17 @@ const meetups = [
 
 export default function Dashboard() {
   return (
-    <Background>
-      <Container>
-        <DateContainer>
-          <Icon name="chevron-left" size={30} color="#fff" />
-          <DateText>31 de Maio</DateText>
-          <Icon name="keyboard-arrow-right" size={30} color="#fff" />
-        </DateContainer>
-        <FlatList
-          keyExtractor={meetup => String(meetup.id)}
-          data={meetups}
-          renderItem={({ item: meetup }) => <Meetup meetup={meetup} />}
-        />
-      </Container>
-    </Background>
+    <Container>
+      <DateContainer>
+        <Icon name="chevron-left" size={30} color="#fff" />
+        <DateText>31 de Maio</DateText>
+        <Icon name="keyboard-arrow-right" size={30} color="#fff" />
+      </DateContainer>
+      <FlatList
+        keyExtractor={meetup => String(meetup.id)}
+        data={meetups}
+        renderItem={({ item: meetup }) => <Meetup meetup={meetup} />}
+      />
+    </Container>
   );
 }

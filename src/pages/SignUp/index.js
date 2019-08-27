@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 
 import Background from '../../components/Background';
@@ -14,7 +15,7 @@ import {
 
 import logo from '../../assets/logo.png';
 
-export default function SignUp() {
+export default function SignUp({ navigation }) {
   return (
     <Background>
       <Container>
@@ -35,10 +36,16 @@ export default function SignUp() {
             <SubmitButtonText>Criar conta</SubmitButtonText>
           </SubmitButton>
         </Form>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
           <LinkText>Já tenho login</LinkText>
         </TouchableOpacity>
       </Container>
     </Background>
   );
 }
+
+SignUp.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
