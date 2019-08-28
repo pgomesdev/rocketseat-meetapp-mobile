@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import createRouter from './routes';
 
@@ -6,7 +7,7 @@ import Header from './components/Header';
 import Background from './components/Background';
 
 export default function App() {
-  const signed = true;
+  const signed = useSelector(state => state.auth.loading);
   const Routes = createRouter(signed);
 
   return (
