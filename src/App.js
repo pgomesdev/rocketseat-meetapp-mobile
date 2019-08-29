@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Background from './components/Background';
 
 export default function App() {
-  const signed = useSelector(state => state.auth.loading);
+  const signed = useSelector(state => state.auth.signed);
   const Routes = createRouter(signed);
 
   return (
