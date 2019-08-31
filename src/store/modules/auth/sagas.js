@@ -9,9 +9,11 @@ export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
 
-    const response = yield call(api.post, '/sessions', { email, password });
+    const { data } = yield call(api.post, '/sessions', { email, password });
 
-    yield put(signInSuccess(response.data));
+    api.defaults.headers.Authorization = `Bearer ${data.token}`;
+
+    yield put(signInSuccess(data));
   } catch (e) {
     Alert.alert('Um erro ocorreu enquanto o login era feito. Tente novamente.');
 
@@ -19,4 +21,17 @@ export function* signIn({ payload }) {
   }
 }
 
-export default all([takeLatest(AUTH_SIGN_IN_REQUEST, signIn)]);
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest(AUTH_SIGN_IN_REQUEST, signIn),
+]);

@@ -4,7 +4,6 @@ export const Container = styled.View`
   padding: 0 20px;
 
   flex: 1;
-  justify-content: center;
 `;
 
 export const DateContainer = styled.View`
@@ -18,5 +17,13 @@ export const DateText = styled.Text`
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  color: #fff;
+`;
+
+export const NoMeetupText = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
   color: #fff;
 `;
