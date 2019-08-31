@@ -105,7 +105,7 @@ export default function Dashboard() {
           keyExtractor={meetup => String(meetup.id)}
           data={meetups}
           renderItem={({ item: meetup }) => (
-            <Meetup meetup={meetup} subscribe={subscribe} />
+            <Meetup meetup={meetup} subscribe={() => subscribe(meetup.id)} />
           )}
         />
       )}

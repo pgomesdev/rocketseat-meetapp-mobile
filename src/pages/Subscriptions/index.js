@@ -47,6 +47,8 @@ export default function Subscriptions() {
       await api.delete(`/register/${id}`);
 
       Alert.alert('Inscrição cancelada com sucesso.');
+
+      setMeetups(meetups.filter(meetup => meetup.meetup.id !== id));
     } catch (e) {
       console.tron.log(e);
       Alert.alert(

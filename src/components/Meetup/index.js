@@ -13,7 +13,7 @@ import {
   SubscribeText,
 } from './styles';
 
-export default function Meetup({ meetup, isCancel }) {
+export default function Meetup({ meetup, isCancel, subscribe, cancel }) {
   return (
     <Container>
       <Image source={{ uri: meetup.banner.url }} />
@@ -21,7 +21,7 @@ export default function Meetup({ meetup, isCancel }) {
         <Title>{meetup.name}</Title>
         <LocationContainer>
           <LocationText>
-            <Icon name="event" size={14} color="#999" /> {meetup.date}
+            <Icon name="event" size={14} color="#999" /> {meetup.formattedDate}
           </LocationText>
           <LocationText>
             <Icon name="place" size={14} color="#999" /> {meetup.location}
@@ -31,7 +31,7 @@ export default function Meetup({ meetup, isCancel }) {
             {` Organizador: @${meetup.user.username}`}
           </LocationText>
         </LocationContainer>
-        <Subscribe>
+        <Subscribe onPress={!isCancel ? subscribe : cancel}>
           <SubscribeText>{`${
             !isCancel ? 'Realizar' : 'Cancelar'
           } Inscrição`}</SubscribeText>
@@ -43,13 +43,17 @@ export default function Meetup({ meetup, isCancel }) {
 
 Meetup.defaultProps = {
   isCancel: false,
+  subscribe: null,
+  cancel: null,
 };
 
 Meetup.propTypes = {
+  subscribe: PropTypes.func,
+  cancel: PropTypes.func,
   isCancel: PropTypes.bool,
   meetup: PropTypes.shape({
     name: PropTypes.string,
-    date: PropTypes.string,
+    formattedDate: PropTypes.string,
     location: PropTypes.string,
     banner: PropTypes.shape({
       url: PropTypes.string,
