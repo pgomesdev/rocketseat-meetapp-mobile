@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import PropTypes from 'prop-types';
 import { FlatList, Alert } from 'react-native';
 import { parseISO, format, addDays, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -112,7 +113,15 @@ export default function Dashboard() {
   );
 }
 
+function tabBarIcon({ tintColor }) {
+  return <Icon name="format-list-bulleted" size={20} color={tintColor} />;
+}
+
 Dashboard.navigationOptions = {
-  tabBarIcon: <Icon name="format-list-bulleted" size={20} color="#fff" />,
+  tabBarIcon,
   tabBarLabel: 'Meetups',
+};
+
+tabBarIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
 };
