@@ -12,6 +12,7 @@ import Meetup from '../../components/Meetup';
 import { Container, DateContainer, DateText, NoMeetupText } from './styles';
 
 export default function Dashboard() {
+  const [page, setPage] = useState(1);
   const [date, setDate] = useState(new Date());
   const [meetups, setMeetups] = useState([]);
   const formattedDate = useMemo(
@@ -39,12 +40,33 @@ export default function Dashboard() {
 
       Alert.alert('Inscrição realizada com sucesso');
     } catch (e) {
-      console.tron.log(e);
-
       Alert.alert(
         'Um erro ocorreu enquanto sua inscrição era feita, tente novamente.'
       );
     }
+  }
+
+  async function fetchMoreMeetups() {
+    const response = await api.get('/meetups', {
+      params: {
+        date: format(date, 'yyyy-MM-dd'),
+        page,
+      },
+    });
+
+    const data = response.data.map(meetup => ({
+      ...meetup,
+      banner: {
+        ...meetup.banner,
+        url: meetup.banner.url.replace('localhost', '192.168.0.13'),
+      },
+      formattedDate: format(parseISO(meetup.date), "d 'de' MMMM', às' H'h'", {
+        locale: pt,
+      }),
+    }));
+
+    setMeetups([...meetups, ...data]);
+    setPage(page + 1);
   }
 
   useEffect(() => {
@@ -73,8 +95,9 @@ export default function Dashboard() {
         }));
 
         setMeetups(data);
+        setPage(2);
       } catch (e) {
-        console.tron.log(e);
+        Alert.alert('Ocorreu um erro enquanto os dados eram carregados.');
       }
     }
 
@@ -107,6 +130,8 @@ export default function Dashboard() {
           renderItem={({ item: meetup }) => (
             <Meetup meetup={meetup} subscribe={() => subscribe(meetup.id)} />
           )}
+          onEndReached={fetchMoreMeetups}
+          onEndReachedThreshold={0.5}
         />
       )}
     </Container>
