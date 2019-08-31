@@ -4,6 +4,7 @@ import {
   AUTH_SIGN_IN_REQUEST,
   AUTH_SIGN_IN_SUCCESS,
   AUTH_SIGN_FAILURE,
+  AUTH_SIGN_OUT,
 } from './actions';
 
 const INITIAL_STATE = {
@@ -25,6 +26,10 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       case AUTH_SIGN_FAILURE:
         draft.loading = false;
+        break;
+      case AUTH_SIGN_OUT:
+        draft.token = null;
+        draft.signed = false;
         break;
       default:
         break;

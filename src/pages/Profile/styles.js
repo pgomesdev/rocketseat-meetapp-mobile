@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
-  align-items: center;
   padding: 20px;
 `;
 
@@ -36,7 +35,7 @@ export const SubmitButton = styled(RectButton)`
 export const LogoutButton = styled(RectButton)`
   border-radius: 4px;
   height: 42px;
-  margin-top: 15px;
+  margin: 15px 0 15px;
   background: #d44059;
   align-items: center;
   justify-content: center;
