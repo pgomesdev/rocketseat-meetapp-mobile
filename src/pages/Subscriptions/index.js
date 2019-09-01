@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FlatList, Alert } from 'react-native';
 import { parseISO, format } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+import { HOST_URL } from 'react-native-dotenv';
 
 import api from '../../services/api';
 
@@ -31,7 +32,7 @@ export default function Subscriptions() {
           ),
           banner: {
             ...meetup.meetup.banner,
-            url: meetup.meetup.banner.url.replace('localhost', '192.168.0.13'),
+            url: meetup.meetup.banner.url.replace('localhost', HOST_URL),
           },
         },
       }));

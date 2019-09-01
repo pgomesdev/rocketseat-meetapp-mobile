@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FlatList, Alert } from 'react-native';
 import { parseISO, format, addDays, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+import { HOST_URL } from 'react-native-dotenv';
 
 import api from '../../services/api';
 
@@ -58,7 +59,7 @@ export default function Dashboard() {
       ...meetup,
       banner: {
         ...meetup.banner,
-        url: meetup.banner.url.replace('localhost', '192.168.0.13'),
+        url: meetup.banner.url.replace('localhost', HOST_URL),
       },
       formattedDate: format(parseISO(meetup.date), "d 'de' MMMM', às' H'h'", {
         locale: pt,
@@ -83,7 +84,7 @@ export default function Dashboard() {
           ...meetup,
           banner: {
             ...meetup.banner,
-            url: meetup.banner.url.replace('localhost', '192.168.0.13'),
+            url: meetup.banner.url.replace('localhost', HOST_URL),
           },
           formattedDate: format(
             parseISO(meetup.date),
